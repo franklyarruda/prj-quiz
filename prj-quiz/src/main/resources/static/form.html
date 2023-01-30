@@ -272,11 +272,14 @@
                 return ;
             }
             if (confirm("Tem certeza que quer apagar essa pergunda?")) {
-                baseQuiz.splice(id, 1);
-                localStorage.setItem('baseQuiz', JSON.stringify(baseQuiz));
+                xhttp.open("DELETE", `/api/quiz/${id}`);
+                xhttp.send();
+                xhttp.onload = function () {
+                    alert(this.responseText);
                 limparForm();
                 buscarQuiz();
-            }
+            };
+        }
 
         }
     </script>
